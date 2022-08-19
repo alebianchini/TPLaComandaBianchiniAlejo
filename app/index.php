@@ -12,6 +12,9 @@ use Slim\Routing\RouteContext;
 
 require __DIR__ . '/../vendor/autoload.php';
 
+require_once './middlewares/MdwCore.php';
+require_once './middlewares/MdwJWT.php';
+
 
 // Load ENV
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
@@ -33,5 +36,9 @@ $app->get('[/]', function (Request $request, Response $response) {
     $response->getBody()->write("TP Comanda Bianchini Alejo");
     return $response;
 });
+
+$app->group('/login', function (RouteCollectorProxy $group) {
+    $group->post('[/]', \UsuarioController::class . ':Login');
+})->add(\MdwCore::class . ':VerificarUsuario');
 
 $app->run();
