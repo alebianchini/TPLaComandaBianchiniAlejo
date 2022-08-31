@@ -181,4 +181,32 @@ class OrderController implements IApiUsable
     return $response
       ->withHeader('Content-Type', 'application/json');
   }
+
+  public function ConsultarDemora($request, $response, $args)
+  {
+    $orderNumber = $args['orderNumber'];
+    $tableNumber = $args['tableNumber'];
+
+    $record = Order::select('orders.eta')
+    ->join("tables", function($join){
+      $join->on("orders.associated_table", "=", "tables.id");
+    })
+    ->where('orders.number', $orderNumber)
+    ->where('tables.number', $tableNumber)
+    ->first();
+
+    $response->getBody()->write($record->toJson());
+
+    /*
+    $record = Order::where('number', $args['number'])->first();
+    if($record != null) {
+      $orderItems = OrderItem::where('order_id', $record->id);
+      $record->items = $orderItems;
+    } else {
+      $response->getBody()->write("No existe una orden con ese numero");
+    }
+    */
+    return $response
+      ->withHeader('Content-Type', 'application/json');
+  }
 }

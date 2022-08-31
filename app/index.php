@@ -123,8 +123,17 @@ $app->group('/orderitem', function (RouteCollectorProxy $group) {
 });
 
 $app->group('/customer', function (RouteCollectorProxy $group) {
-    $group->get('[/]', \OrderController::class . ':ConsultarDemora' );
+    $group->get('/{orderNumber}/{tableNumber}', \OrderController::class . ':ConsultarDemora' );
     //$group->post('[/]', \EmployeeController::class . ':CargarUno' );
+});
+
+$app->group('/survey', function (RouteCollectorProxy $group) {
+    $group->get('/{id}', \SurveyController::class . ':TraerUno' )->add(\MdwJWT::class . ':ValidarToken');
+    $group->get('[/]', \SurveyController::class . ':TraerTodos' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->post('[/]', \SurveyController::class . ':CargarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->put('[/{id}]', \SurveyController::class . ':ModificarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->delete('[/{id}]', \SurveyController::class . ':BorrarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->put('/restore/{id}', \SurveyController::class . ':RestaurarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
 });
 
 $app->run();
