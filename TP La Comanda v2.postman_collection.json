@@ -1,0 +1,1610 @@
+{
+	"info": {
+		"_postman_id": "95bd1c00-cdd5-4655-859f-3d6314afe752",
+		"name": "TP La Comanda v2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20155337"
+	},
+	"item": [
+		{
+			"name": "Table",
+			"item": [
+				{
+					"name": "Get All Tables",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/table",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"table"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Table By Number",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/table/2",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"table",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Table",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"number\": \"6\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:666/table",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"table"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify Table",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"number\": 8,\r\n    \"status\": \"5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:666/table/4",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"table",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pay Table By TableNumber",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/table/pay/1",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"table",
+								"pay",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Close Table By TableNumber",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/table/close/1",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"table",
+								"close",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restore Table By ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/table/restore/1",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"table",
+								"restore",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Table By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/table/1",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"table",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Status",
+			"item": [
+				{
+					"name": "Get All Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/status",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Status By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/status/3",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"status",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Status",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Sefini\",\r\n    \"type\": \"table\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:666/status",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify Status",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Sefini\",\r\n    \"type\": \"table\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:666/status/9",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"status",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restore Status By ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/status/restore/10",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"status",
+								"restore",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Status By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/status/10",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"status",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Get All Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/product",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/product/2",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"product",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Products Ordered By Sold Number",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/product/all/mostsold",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"product",
+								"all",
+								"mostsold"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Cerveza Brahama\",\r\n    \"price\": \"400\",\r\n    \"eta\": \"1\",\r\n    \"employee_type\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:666/product",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify Product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Cerveza Brahama\",\r\n    \"price\": \"350\",\r\n    \"eta\": \"1\",\r\n    \"employee_type\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:666/product/6",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"product",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restore Product By ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/product/restore/6",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"product",
+								"restore",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/product/6",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"product",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "EmployeeType",
+			"item": [
+				{
+					"name": "Get All EmployeeTypes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/employeetype",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"employeetype"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get EmployeeType By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/employeetype/3",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"employeetype",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create EmployeeType",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Developer\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:666/employeetype",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"employeetype"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify EmployeeType",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"RECEPCIONISTA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:666/employeetype/6",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"employeetype",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restore EmployeeType By ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/employeetype/restore/6",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"employeetype",
+								"restore",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete EmployeeType By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/employeetype/6",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"employeetype",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Employee",
+			"item": [
+				{
+					"name": "Get All Employees",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/employee",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"employee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Employee By UUID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/employee/tchapin",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"employee",
+								"tchapin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get PDF",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/employee/pdf/logo",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"employee",
+								"pdf",
+								"logo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Employee",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"uuid\": \"cr7\",\r\n    \"full_name\": \"Cristiano Ronaldo\",\r\n    \"password\": \"password\",\r\n    \"type\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:666/employee",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"employee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify Employee",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"uuid\": \"lmessi\",\r\n    \"full_name\": \"Lionel Messi\",\r\n    \"password\": \"messi10\",\r\n    \"type\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:666/employee/5",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"employee",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restore Employee By UUID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/employee/restore/lmessi",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"employee",
+								"restore",
+								"lmessi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Employee By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/employee/1",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"employee",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Get All Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/orders",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Orders Ready",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/orders/all/paraServir",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"orders",
+								"all",
+								"paraServir"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/orders/1",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"orders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"waiter\": 2,\r\n    \"associated_table\": 1,\r\n    \"customer_name\": \"Mariano\",\r\n    \"items\": [\r\n        {\r\n            \"name\": \"Milanesa a caballo\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:666/orders",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Take Picture",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "orderNumber",
+									"value": "KV7DE",
+									"type": "text"
+								},
+								{
+									"key": "tableNumber",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "picture",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:666/orders/picture",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"orders",
+								"picture"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eta\": \"10\",\r\n    \"completed_time\": \"15\",\r\n    \"status_id\": 1,\r\n    \"waiter\": 1,\r\n    \"customer\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:666/orders/1",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"orders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Entregar Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:666/orders/entrega/7",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"orders",
+								"entrega",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Order By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/orders/1",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"orders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Orders Items",
+			"item": [
+				{
+					"name": "Get All Order Items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/orderitem",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"orderitem"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Order Items Pending By Employee Type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/orderitem/todos/employee",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"orderitem",
+								"todos",
+								"employee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order Item By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/orderitem/5",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"orderitem",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Order Item",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product\": 4,\r\n    \"status\": 1,\r\n    \"order_id\": 37\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:666/orderitem",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"orderitem"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify Order Item",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product\": 1,\r\n    \"status\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:666/orderitem/1",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"orderitem",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restore Order Item By ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/orderitem/restore/1",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"orderitem",
+								"restore",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put En Preparacion",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/orderitem/start/14",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"orderitem",
+								"start",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Listo Servir",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/orderitem/end/14",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"orderitem",
+								"end",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Order Item By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/orderitem/1",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"orderitem",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Get Estimated Time",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/customer/KV7DE/1",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"customer",
+								"KV7DE",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Survey",
+			"item": [
+				{
+					"name": "Get All Surveys",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/survey",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"survey"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Survey By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/survey/1",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"survey",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Survey",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"table_points\": 10,\r\n    \"restaurant_points\": 10,\r\n    \"cook_points\": 10,\r\n    \"waiter_points\": 10,\r\n    \"comment\": \"Todo super excelente!\",\r\n    \"associated_table\": \"A15DB\",\r\n    \"associated_order\": \"ELXRI\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:666/survey",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"survey"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify Survey",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"table_points\": 1,\r\n        \"restaurant_points\": 1,\r\n        \"cook_points\": 1,\r\n        \"waiter_points\": 1,\r\n        \"comment\": \"Todo malo!\",\r\n        \"associated_table\": 2,\r\n        \"associated_order\": 2\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:666/survey/1",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"survey",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restore Survey By ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/survey/restore/1",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"survey",
+								"restore",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Survey By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:666/survey/1",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"survey",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Do Login Socio",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "uuid",
+							"value": "abianchini",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:666/login",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Do Login Mozo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "uuid",
+							"value": "tchapin",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:666/login",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Do Login Cocinero",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "uuid",
+							"value": "jsnow",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:666/login",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjE5NzczMDQsImV4cCI6MTY2MjAzNzMwNCwiYXVkIjoiNDkyNWQ3NDk5M2EwN2RhOTdmNzZkMmMwMWE0YzcwMWU2NTRmNjdhMCIsImRhdGEiOnsidXVpZCI6ImFiaWFuY2hpbmkiLCJ0eXBlIjoiU09DSU8ifSwiYXBwIjoiVFBMQUNPTUFOREEifQ.N-0_gFz0IGTZ5ttPzeTyLccXt6fosQmCUYJICkiCX4M",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
