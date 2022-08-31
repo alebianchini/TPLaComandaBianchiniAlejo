@@ -118,4 +118,48 @@ class TableController implements IApiUsable
     return $response
       ->withHeader('Content-Type', 'application/json');
   }
+
+  public function AbonarMesa($request, $response, $args)
+  {
+    $record = Table::where('number', $args['tableNumber'])->first();
+
+    if ($record !== null) {
+      $status = Status::where('name','Cliente pagando')->first();
+      if($status != null && $status->type == "table"){
+        $record->status = $status->id;
+      } else {
+        $response->getBody()->write("Ese Status no es valido.");
+      }
+
+      $record->save();
+      $payload = $record->toJson();
+    } else {
+      $payload = json_encode(array("mensaje" => "Mesa no encontrada"));
+    }
+
+    $response->getBody()->write($payload);
+    return $response->withHeader('Content-Type', 'application/json');
+  }
+
+  public function CerrarMesa($request, $response, $args)
+  {
+    $record = Table::where('number', $args['tableNumber']);
+
+    if ($record !== null) {
+      $status = Status::where('name','Cerrada')->first();
+      if($status != null && $status->type == "table"){
+        $record->status = $status->id;
+      } else {
+        $response->getBody()->write("Ese Status no es valido.");
+      }
+
+      $record->save();
+      $payload = $record->toJson();
+    } else {
+      $payload = json_encode(array("mensaje" => "Mesa no encontrada"));
+    }
+
+    $response->getBody()->write($payload);
+    return $response->withHeader('Content-Type', 'application/json');
+  }
 }

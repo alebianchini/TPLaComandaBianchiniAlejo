@@ -2,12 +2,14 @@
 
 require_once './models/Status.php';
 require_once './models/OrderItem.php';
+require_once './models/Order.php';
 require_once './models/Product.php';
 require_once './models/EmployeeType.php';
 require_once './interfaces/IApiUsable.php';
 
 use App\Models\Status as Status;
 use App\Models\OrderItem as OrderItem;
+use App\Models\Order as Order;
 use App\Models\Product as Product;
 use App\Models\EmployeeType as EmployeeType;
 
@@ -155,11 +157,19 @@ class OrderItemController implements IApiUsable
       if($employeeType['id'] == $product->employee_type){
         $record2 = Status::where('name', 'Listo para Servir')->first();
         $record->status = $record2->id;
-  
+        
         $time = new DateTime('America/Argentina/Buenos_Aires');
         $record->completed_time = $time->format('Y-m-d H:i');
         $record->save();
   
+        $order = Order::find($record->order_id);
+        $orderItemsPending = OrderItem::where('order_id', $order->id)
+        ->where('status', '!=', $record2->id)->get();
+        if(count($orderItemsPending) == 0){
+          $order->status = 3;
+          $order->save();
+        }
+
         $response->getBody()->write($record->toJson());
       } else {
         $response->getBody()->write("El item seleccionado no le corresponde al empleado logueado.");

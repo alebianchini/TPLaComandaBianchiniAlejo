@@ -86,10 +86,12 @@ CREATE TABLE survey (
 INSERT INTO status VALUES (1, "En espera", "order", NULL);
 INSERT INTO status VALUES (2, "En preparacion", "order", NULL);
 INSERT INTO status VALUES (3, "Listo para servir", "order", NULL);
-INSERT INTO status VALUES (4, "Cliente esperando pedido", "table", NULL);
-INSERT INTO status VALUES (5, "Cliente comiendo", "table", NULL);
-INSERT INTO status VALUES (6, "Cliente pagando", "table", NULL);
-INSERT INTO status VALUES (7, "Cerrada", "table", NULL);
+INSERT INTO status VALUES (4, "Entregada", "order", NULL);
+INSERT INTO status VALUES (5, "Terminada", "order", NULL);
+INSERT INTO status VALUES (6, "Cliente esperando pedido", "table", NULL);
+INSERT INTO status VALUES (7, "Cliente comiendo", "table", NULL);
+INSERT INTO status VALUES (8, "Cliente pagando", "table", NULL);
+INSERT INTO status VALUES (9, "Cerrada", "table", NULL);
 
 INSERT INTO employee_type VALUES (1, "SOCIO", NULL);
 INSERT INTO employee_type VALUES (2, "MOZO", NULL);

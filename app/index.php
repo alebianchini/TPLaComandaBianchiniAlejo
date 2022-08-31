@@ -71,6 +71,8 @@ $app->group('/table', function (RouteCollectorProxy $group) {
     $group->put('[/{id}]', \TableController::class . ':ModificarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
     $group->delete('[/{id}]', \TableController::class . ':BorrarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
     $group->put('/restore/{id}', \TableController::class . ':RestaurarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->put('/close/{tableNumber}', \TableController::class . ':CerrarMesa' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->put('/pay/{tableNumber}', \TableController::class . ':AbonarMesa' )->add(\MdwJWT::class . ':ValidarTokenMozo');
 });
 
 $app->group('/product', function (RouteCollectorProxy $group) {
@@ -108,8 +110,8 @@ $app->group('/orders', function (RouteCollectorProxy $group) {
     $group->put('[/{id}]', \OrderController::class . ':ModificarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
     $group->delete('[/{id}]', \OrderController::class . ':BorrarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
     $group->put('/restore/{id}', \OrderController::class . ':RestaurarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
-    $group->post('/picture', \OrderController::class . ':TomarFoto' )->add(\MdwJWT::class . ':ValidarTokenSocio');
-    //$group->get('/paraServir', \OrderController::class . ':TraerTodosParaServir' )->add(\MdwJWT::class . ':ValidarTokenMozo');
+    $group->post('/picture', \OrderController::class . ':TomarFoto' )->add(\MdwJWT::class . ':ValidarTokenMozo');
+    $group->get('/all/paraServir', \OrderController::class . ':TraerTodosParaServir' )->add(\MdwJWT::class . ':ValidarTokenMozo');
     //$group->post('/entrega/{id}', \OrderController::class . ':EntregaOrden' )->add(\MdwJWT::class . ':ValidarTokenMozo');
 });
 
