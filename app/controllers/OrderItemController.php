@@ -105,7 +105,8 @@ class OrderItemController implements IApiUsable
 
   public function TraerTodosPorTipoDeEmpleado($request, $response, $args)
   {
-    $employeeType = EmployeeType::where("name", 'CERVECERO')->first();
+    //$employeeType = AutentificadorJWT::ObtenerEmployeeType(trim(explode("Bearer", $request->getHeaderLine('Authorization'))[1]));
+    $employeeType = EmployeeType::where("name", AutentificadorJWT::ObtenerEmployeeType(trim(explode("Bearer", $request->getHeaderLine('Authorization'))[1])))->first();
     $products = Product::select('id')->where("employee_type", $employeeType['id']);
     $orderItems = OrderItem::whereIn('product',$products)->where("status", 1)->get();
 
@@ -118,20 +119,26 @@ class OrderItemController implements IApiUsable
   {
     $record = OrderItem::find($args['id']);
     if($record != null) {
-      $record2 = Status::where('name', 'En preparacion')->first();
-      $record->status = $record2->id;
-
+      $employeeType = EmployeeType::where("name", AutentificadorJWT::ObtenerEmployeeType(trim(explode("Bearer", $request->getHeaderLine('Authorization'))[1])))->first();
       $product = Product::find($record->product);
-
-      $time = new DateTime('America/Argentina/Buenos_Aires');
-      $time->add(new DateInterval('PT' . $product->eta . 'M'));
-
-      $record->eta = $time->format('Y-m-d H:i');
-      $record->save();
-
-      $response->getBody()->write($record->toJson());
+      if($employeeType['id'] == $product->employee_type){
+        $record2 = Status::where('name', 'En preparacion')->first();
+        $record->status = $record2->id;
+  
+        $product = Product::find($record->product);
+  
+        $time = new DateTime('America/Argentina/Buenos_Aires');
+        $time->add(new DateInterval('PT' . $product->eta . 'M'));
+  
+        $record->eta = $time->format('Y-m-d H:i');
+        $record->save();
+  
+        $response->getBody()->write($record->toJson());
+      } else {
+        $response->getBody()->write("El item seleccionado no le corresponde al empleado logueado.");
+      }
     } else {
-      $response->getBody()->write("No existe status con ese id");
+      $response->getBody()->write("No existe un item con ese id");
     }
 
     return $response
@@ -142,14 +149,21 @@ class OrderItemController implements IApiUsable
   {
     $record = OrderItem::find($args['id']);
     if($record != null) {
-      $record2 = Status::where('name', 'Listo para Servir')->first();
-      $record->status = $record2->id;
-
-      $time = new DateTime('America/Argentina/Buenos_Aires');
-      $record->completed_time = $time->format('Y-m-d H:i');
-      $record->save();
-
-      $response->getBody()->write($record->toJson());
+      $employeeType = EmployeeType::where("name", AutentificadorJWT::ObtenerEmployeeType(trim(explode("Bearer", $request->getHeaderLine('Authorization'))[1])))->first();
+      $product = Product::find($record->product);
+      
+      if($employeeType['id'] == $product->employee_type){
+        $record2 = Status::where('name', 'Listo para Servir')->first();
+        $record->status = $record2->id;
+  
+        $time = new DateTime('America/Argentina/Buenos_Aires');
+        $record->completed_time = $time->format('Y-m-d H:i');
+        $record->save();
+  
+        $response->getBody()->write($record->toJson());
+      } else {
+        $response->getBody()->write("El item seleccionado no le corresponde al empleado logueado.");
+      }
     } else {
       $response->getBody()->write("No existe status con ese id");
     }

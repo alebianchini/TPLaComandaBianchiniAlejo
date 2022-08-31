@@ -6,7 +6,6 @@ require_once './interfaces/IApiUsable.php';
 
 use App\Models\Product as Product;
 use App\Models\EmployeeType as EmployeeType;
-use App\Models\OrderItem;
 
 use Illuminate\Database\Capsule\Manager as DB;
 
@@ -134,22 +133,15 @@ class ProductController implements IApiUsable
 
   public function ObtenerDeMasVendidoAMenos($request, $response, $args)
   {
-    // $ret = OrderItem::select(DB::raw("count(order_items.product), product.name
-    // FROM order_items as order_items join product as product on order_items.product = product.id
-    // GROUP BY order_items.product"))->get();
-
-    $ret = DB::table("order_items")
-    ->join("product", function($join){
+    $ret = Product::leftJoin("order_items", function($join){
         $join->on("order_items.product", "=", "product.id");
     })
-    ->select("count(order_items.product) as counts", "order_items.product")
+    ->select(DB::raw("count(order_items.product) as nbr_sold"), "product.name")
     ->groupBy("order_items.product")
+    ->orderBy('nbr_sold','desc')
     ->get();
 
-    var_dump($ret);
-
     $response->getBody()->write($ret->toJson());
-
     return $response
       ->withHeader('Content-Type', 'application/json');
   }

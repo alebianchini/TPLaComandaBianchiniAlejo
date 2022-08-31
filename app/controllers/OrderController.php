@@ -54,7 +54,6 @@ class OrderController implements IApiUsable
       $recordToCreate['number'] = substr(str_shuffle('1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 5);
       $recordToCreate['status'] = 1;
       $eta = 0;
-      $etaTime = 0;
       $amount = 0;
 
       $createdOrderId = Order::insertGetId($recordToCreate);
@@ -156,11 +155,10 @@ class OrderController implements IApiUsable
 
   public function TomarFoto($request, $response, $args)
   {
-    /*$parametros = $request->getParsedBody();
+    $parametros = $request->getParsedBody();
     $orderNumber = $parametros['orderNumber'];
     $tableNumber = $parametros['tableNumber'];
     $picture = $_FILES["picture"];
-    $fecha = new DateTime(date("d-m-Y"));
 
     if ($orderNumber == null || $tableNumber == null || $picture == null) {
       $response->getBody()->write("Los Parametros de la consulta estan mal cargados o faltan parametros");
@@ -169,14 +167,18 @@ class OrderController implements IApiUsable
         ->withStatus(403);
     }
 
-    $string = explode(".", $file["name"]);
+    $string = explode(".", $picture["name"]);
     $extension = $string[1];
-    $destino = "images/FotosCripto/" . $param1 . "_" . $param2 . "_" . date("d-m-Y") . '.' . $extension;
+    $destino = "images/FotosMesas/" . $orderNumber . "_" . $tableNumber . "_" . date("d-m-Y") . '.' . $extension;
+    $order = Order::where('number', $orderNumber)->first();
     if (!is_file($destino)) {
-      move_uploaded_file($file["tmp_name"], $destino);
+      move_uploaded_file($picture["tmp_name"], $destino);
+      $order->picture_path = $destino;
+      $order->save();
     }
-    $destino; */
+    $response->getBody()->write($order->toJson());
 
-
+    return $response
+      ->withHeader('Content-Type', 'application/json');
   }
 }

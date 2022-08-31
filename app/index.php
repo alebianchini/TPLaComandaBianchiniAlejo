@@ -107,6 +107,7 @@ $app->group('/orders', function (RouteCollectorProxy $group) {
     $group->put('[/{id}]', \OrderController::class . ':ModificarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
     $group->delete('[/{id}]', \OrderController::class . ':BorrarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
     $group->put('/restore/{id}', \OrderController::class . ':RestaurarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->post('/picture', \OrderController::class . ':TomarFoto' )->add(\MdwJWT::class . ':ValidarTokenSocio');
 });
 
 $app->group('/orderitem', function (RouteCollectorProxy $group) {
@@ -117,8 +118,13 @@ $app->group('/orderitem', function (RouteCollectorProxy $group) {
     $group->put('[/{id}]', \OrderItemController::class . ':ModificarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
     $group->delete('[/{id}]', \OrderItemController::class . ':BorrarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
     $group->put('/restore/{id}', \OrderItemController::class . ':RestaurarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
-    $group->put('/start/{id}', \OrderItemController::class . ':PonerEnPreparacion' )->add(\MdwJWT::class . ':ValidarTokenSocio');
-    $group->put('/end/{id}', \OrderItemController::class . ':PonerListoParaServir' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->put('/start/{id}', \OrderItemController::class . ':PonerEnPreparacion' )->add(\MdwJWT::class . ':ValidarToken');
+    $group->put('/end/{id}', \OrderItemController::class . ':PonerListoParaServir' )->add(\MdwJWT::class . ':ValidarToken');
+});
+
+$app->group('/customer', function (RouteCollectorProxy $group) {
+    $group->get('[/]', \OrderController::class . ':ConsultarDemora' );
+    //$group->post('[/]', \EmployeeController::class . ':CargarUno' );
 });
 
 $app->run();

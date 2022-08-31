@@ -66,6 +66,14 @@ class AutentificadorJWT
         )->data;
     }
 
+    public static function ObtenerEmployeeType($token)
+    {
+        if (empty($token)) {
+            throw new Exception("El token esta vacio.");
+        }
+        return JWT::decode($token, self::$claveSecreta, self::$tipoEncriptacion)->data->type;
+    }
+
     private static function Aud()
     {
         $aud = '';
