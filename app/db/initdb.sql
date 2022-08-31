@@ -76,7 +76,11 @@ CREATE TABLE survey (
   cook_points INTEGER,
   waiter_points INTEGER,
   comment VARCHAR(66),
-  deleted_at DATETIME DEFAULT NULL
+  associated_table INTEGER,
+  associated_order INTEGER,
+  deleted_at DATETIME DEFAULT NULL,
+  FOREIGN KEY(associated_order) REFERENCES orders(id),
+  FOREIGN KEY(associated_table) REFERENCES tables(id)
 );
 
 INSERT INTO status VALUES (1, "En espera", "order", NULL);

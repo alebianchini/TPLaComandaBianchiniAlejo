@@ -197,15 +197,6 @@ class OrderController implements IApiUsable
 
     $response->getBody()->write($record->toJson());
 
-    /*
-    $record = Order::where('number', $args['number'])->first();
-    if($record != null) {
-      $orderItems = OrderItem::where('order_id', $record->id);
-      $record->items = $orderItems;
-    } else {
-      $response->getBody()->write("No existe una orden con ese numero");
-    }
-    */
     return $response
       ->withHeader('Content-Type', 'application/json');
   }

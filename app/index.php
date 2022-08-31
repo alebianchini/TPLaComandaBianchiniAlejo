@@ -24,6 +24,7 @@ require_once './controllers/StatusController.php';
 require_once './controllers/EmployeeTypeController.php';
 require_once './controllers/OrderController.php';
 require_once './controllers/OrderItemController.php';
+require_once './controllers/SurveyController.php';
 require_once './controllers/LoginController.php';
 require_once './middlewares/MdwCore.php';
 require_once './middlewares/MdwJWT.php';
