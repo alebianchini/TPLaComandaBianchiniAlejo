@@ -2,6 +2,7 @@
 
 require_once './models/Employee.php';
 require_once './models/EmployeeType.php';
+require_once './models/Informe.php';
 require_once './interfaces/IApiUsable.php';
 
 use App\Models\Employee as Employee;
@@ -123,6 +124,14 @@ class EmployeeController implements IApiUsable
     } else {
       $response->getBody()->write("No hay un empleado de baja con ese uuid");
     }
+
+    return $response
+      ->withHeader('Content-Type', 'application/json');
+  }
+
+  public function CrearPdf($request, $response, $args)
+  {
+    Informe::crearInformePDF();
 
     return $response
       ->withHeader('Content-Type', 'application/json');

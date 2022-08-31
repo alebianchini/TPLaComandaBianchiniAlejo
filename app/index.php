@@ -62,6 +62,7 @@ $app->group('/employee', function (RouteCollectorProxy $group) {
     $group->put('[/{id}]', \EmployeeController::class . ':ModificarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
     $group->delete('[/{id}]', \EmployeeController::class . ':BorrarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
     $group->put('/restore/{uuid}', \EmployeeController::class . ':RestaurarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->get('/pdf/logo', \EmployeeController::class . ':CrearPdf' )->add(\MdwJWT::class . ':ValidarTokenSocio');
 });
 
 $app->group('/table', function (RouteCollectorProxy $group) {
@@ -112,7 +113,7 @@ $app->group('/orders', function (RouteCollectorProxy $group) {
     $group->put('/restore/{id}', \OrderController::class . ':RestaurarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
     $group->post('/picture', \OrderController::class . ':TomarFoto' )->add(\MdwJWT::class . ':ValidarTokenMozo');
     $group->get('/all/paraServir', \OrderController::class . ':TraerTodosParaServir' )->add(\MdwJWT::class . ':ValidarTokenMozo');
-    //$group->post('/entrega/{id}', \OrderController::class . ':EntregaOrden' )->add(\MdwJWT::class . ':ValidarTokenMozo');
+    $group->put('/entrega/{id}', \OrderController::class . ':EntregarOrden' )->add(\MdwJWT::class . ':ValidarTokenMozo');
 });
 
 $app->group('/orderitem', function (RouteCollectorProxy $group) {

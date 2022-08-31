@@ -1,11 +1,13 @@
 <?php
 
 require_once './models/Order.php';
+require_once './models/Table.php';
 require_once './models/Product.php';
 require_once './models/OrderItem.php';
 require_once './interfaces/IApiUsable.php';
 
 use App\Models\Order as Order;
+use App\Models\Table as Table;
 use App\Models\Product as Product;
 use App\Models\OrderItem as OrderItem;
 
@@ -218,36 +220,15 @@ class OrderController implements IApiUsable
   public function EntregarOrden($request, $response, $args)
   {
     $record = Order::find($args['id']);
-    $parametros = $request->getParsedBody();
+    $table = Table::find($record->associated_table);
 
-    if ($record != null) {
-      if(array_key_exists("name",$parametros) && $parametros['name'] != null){
-        if(Order::where('name', $parametros['name'])->exists()){
-          $response->getBody()->write("Ya existe un producto con ese nombre.");
-        } else {
-          $record->name = $parametros['name'];
-        }
-      }
+    $record->status = 4;
+    $table->status = 7;
 
-      if(array_key_exists("price",$parametros) && $parametros['price'] != null){
-        $record->price = $parametros['price'];
-      }
+    $record->save();
+    $table->save();
 
-      if(array_key_exists("eta",$parametros) && $parametros['eta'] != null){
-        $record->eta = $parametros['eta'];
-      }
-
-      if(array_key_exists("employee_type",$parametros) && $parametros['employee_type'] != null){
-        $record->employee_type = $parametros['employee_type'];
-      }
-
-      $record->save();
-
-      $payload = json_encode(array("mensaje" => "Producto modificado con exito"));
-    } else {
-      $payload = json_encode(array("mensaje" => "Producto no encontrado"));
-    }
-    $response->getBody()->write($payload);
+    $response->getBody()->write($record->toJson());
     return $response->withHeader('Content-Type', 'application/json');
   }
 }

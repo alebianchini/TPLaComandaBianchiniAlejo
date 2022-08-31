@@ -134,6 +134,10 @@ class OrderItemController implements IApiUsable
   
         $record->eta = $time->format('Y-m-d H:i');
         $record->save();
+
+        $order = Order::find($record->order_id);
+        $order->status = 2;
+        $order->save();
   
         $response->getBody()->write($record->toJson());
       } else {
