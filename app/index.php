@@ -19,6 +19,7 @@ use Illuminate\Container\Container;
 require __DIR__ . '/../vendor/autoload.php';
 require_once './controllers/EmployeeController.php';
 require_once './controllers/TableController.php';
+require_once './controllers/StatusController.php';
 require_once './controllers/LoginController.php';
 require_once './middlewares/MdwCore.php';
 require_once './middlewares/MdwJWT.php';
@@ -65,6 +66,15 @@ $app->group('/table', function (RouteCollectorProxy $group) {
     $group->put('[/{id}]', \TableController::class . ':ModificarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
     $group->delete('[/{id}]', \TableController::class . ':BorrarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
     $group->put('/restore/{id}', \TableController::class . ':RestaurarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+});
+
+$app->group('/status', function (RouteCollectorProxy $group) {
+    $group->get('/{id}', \StatusController::class . ':TraerUno' )->add(\MdwJWT::class . ':ValidarToken');
+    $group->get('[/]', \StatusController::class . ':TraerTodos' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->post('[/]', \StatusController::class . ':CargarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->put('[/{id}]', \StatusController::class . ':ModificarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->delete('[/{id}]', \StatusController::class . ':BorrarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->put('/restore/{id}', \StatusController::class . ':RestaurarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
 });
 
 $app->run();

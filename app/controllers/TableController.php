@@ -89,7 +89,7 @@ class TableController implements IApiUsable
         if($status != null && $status->type == "table"){
           $record->status = $request->getParsedBody()['status'];
         } else {
-          $response->getBody()->write("Ese Status no existe.");
+          $response->getBody()->write("Ese Status no es valido.");
         }
       };
 
@@ -112,7 +112,7 @@ class TableController implements IApiUsable
       $ret->restore();
       $response->getBody()->write("La mesa $ret->id fue dada de alta nuevamente");
     } else {
-      $response->getBody()->write("No hay un empleado de baja con ese uuid");
+      $response->getBody()->write("No hay un status de baja con ese id");
     }
 
     return $response

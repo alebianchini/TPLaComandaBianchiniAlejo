@@ -53,7 +53,7 @@ class EmployeeController implements IApiUsable
           $response->getBody()->write($record->toJson());
         }
       } else {
-        $response->getBody()->write("Ese Status no existe.");
+        $response->getBody()->write("Ese Type no existe.");
       }
     } else {
       $response->getBody()->write("Estan mal cargados los parametros de la consulta.");

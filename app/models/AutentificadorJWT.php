@@ -32,7 +32,7 @@ class AutentificadorJWT
                 self::$claveSecreta,
                 self::$tipoEncriptacion
             );
-        } catch (Exception) {
+        } catch (Exception $e) {
             return 1;
             //throw new Exception("Token invalido.");
         }
