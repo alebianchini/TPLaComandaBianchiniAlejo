@@ -22,6 +22,8 @@ require_once './controllers/TableController.php';
 require_once './controllers/ProductController.php';
 require_once './controllers/StatusController.php';
 require_once './controllers/EmployeeTypeController.php';
+require_once './controllers/OrderController.php';
+require_once './controllers/OrderItemController.php';
 require_once './controllers/LoginController.php';
 require_once './middlewares/MdwCore.php';
 require_once './middlewares/MdwJWT.php';
@@ -95,6 +97,27 @@ $app->group('/employeetype', function (RouteCollectorProxy $group) {
     $group->put('[/{id}]', \EmployeeTypeController::class . ':ModificarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
     $group->delete('[/{id}]', \EmployeeTypeController::class . ':BorrarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
     $group->put('/restore/{id}', \EmployeeTypeController::class . ':RestaurarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+});
+
+$app->group('/orders', function (RouteCollectorProxy $group) {
+    $group->get('/{number}', \OrderController::class . ':TraerUno' )->add(\MdwJWT::class . ':ValidarToken');
+    $group->get('[/]', \OrderController::class . ':TraerTodos' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->post('[/]', \OrderController::class . ':CargarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->put('[/{id}]', \OrderController::class . ':ModificarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->delete('[/{id}]', \OrderController::class . ':BorrarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->put('/restore/{id}', \OrderController::class . ':RestaurarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+});
+
+$app->group('/orderitem', function (RouteCollectorProxy $group) {
+    $group->get('/{id}', \OrderItemController::class . ':TraerUno' )->add(\MdwJWT::class . ':ValidarToken');
+    $group->get('/todos/employee', \OrderItemController::class . ':TraerTodosPorTipoDeEmpleado' )->add(\MdwJWT::class . ':ValidarToken');
+    $group->get('[/]', \OrderItemController::class . ':TraerTodos' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->post('[/]', \OrderItemController::class . ':CargarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->put('[/{id}]', \OrderItemController::class . ':ModificarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->delete('[/{id}]', \OrderItemController::class . ':BorrarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->put('/restore/{id}', \OrderItemController::class . ':RestaurarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->put('/start/{id}', \OrderItemController::class . ':PonerEnPreparacion' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->put('/end/{id}', \OrderItemController::class . ':PonerListoParaServir' )->add(\MdwJWT::class . ':ValidarTokenSocio');
 });
 
 $app->run();

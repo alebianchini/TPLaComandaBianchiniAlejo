@@ -41,12 +41,15 @@ CREATE TABLE employee (
 
 CREATE TABLE orders (
   id INTEGER PRIMARY KEY AUTO_INCREMENT,
-  number INTEGER,
+  number TEXT,
   eta  TEXT,
   completed_time TEXT,
   status   INTEGER,
   waiter   INTEGER,
   associated_table   INTEGER,
+  amount   NUMERIC,
+  customer_name   TEXT,
+  picture_path   TEXT,
   deleted_at DATETIME DEFAULT NULL,
   FOREIGN KEY(status) REFERENCES status(id),
   FOREIGN KEY(waiter) REFERENCES employee(id),
@@ -58,13 +61,27 @@ CREATE TABLE order_items (
   product INTEGER,
   status   INTEGER,
   order_id INTEGER,
+  eta DATETIME,
+  completed_time DATETIME DEFAULT NULL,
   deleted_at DATETIME DEFAULT NULL,
-  FOREIGN KEY(order_id) REFERENCES orders(id)
+  FOREIGN KEY(order_id) REFERENCES orders(id),
+  FOREIGN KEY(product) REFERENCES product(id),
+  FOREIGN KEY(status) REFERENCES status(id)
+);
+
+CREATE TABLE survey (
+  id    INTEGER PRIMARY KEY AUTO_INCREMENT, 
+  table_points INTEGER,
+  restaurant_points   INTEGER,
+  cook_points INTEGER,
+  waiter_points INTEGER,
+  comment VARCHAR(66),
+  deleted_at DATETIME DEFAULT NULL
 );
 
 INSERT INTO status VALUES (1, "En espera", "order", NULL);
 INSERT INTO status VALUES (2, "En preparacion", "order", NULL);
-INSERT INTO status VALUES (3, "Completado", "order", NULL);
+INSERT INTO status VALUES (3, "Listo para servir", "order", NULL);
 INSERT INTO status VALUES (4, "Cliente esperando pedido", "table", NULL);
 INSERT INTO status VALUES (5, "Cliente comiendo", "table", NULL);
 INSERT INTO status VALUES (6, "Cliente pagando", "table", NULL);
