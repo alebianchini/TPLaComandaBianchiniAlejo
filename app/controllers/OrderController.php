@@ -46,7 +46,6 @@ class OrderController implements IApiUsable
 
     if(array_key_exists("waiter",$parametros) && $parametros['waiter'] != null &&
     array_key_exists("associated_table",$parametros) && $parametros['associated_table'] != null &&
-    array_key_exists("amount",$parametros) && $parametros['amount'] != null &&
     array_key_exists("items",$parametros) && $parametros['items'] != null ){
 
       $recordToCreate = $request->getParsedBody();
@@ -56,6 +55,7 @@ class OrderController implements IApiUsable
       $recordToCreate['status'] = 1;
       $eta = 0;
       $etaTime = 0;
+      $amount = 0;
 
       $createdOrderId = Order::insertGetId($recordToCreate);
       $record = Order::find($createdOrderId);
@@ -63,7 +63,7 @@ class OrderController implements IApiUsable
       foreach ($receivedItems as $value) {
         $productItem = Product::where('name', $value['name'])->first();
         $orderItemToCreate = array('product' => $productItem->id, 'status' => 1, "order_id" => $createdOrderId);
-
+        $amount += $productItem->price;
         if($eta < $productItem->eta){
           $eta = $productItem->eta;
         }
@@ -74,6 +74,7 @@ class OrderController implements IApiUsable
       $time = new DateTime('America/Argentina/Buenos_Aires');
       $time->add(new DateInterval('PT' . $eta . 'M'));
 
+      $record->amount = $amount;
       $record->eta = $time->format('Y-m-d H:i');
       $record->save();
 
@@ -151,5 +152,31 @@ class OrderController implements IApiUsable
 
     return $response
       ->withHeader('Content-Type', 'application/json');
+  }
+
+  public function TomarFoto($request, $response, $args)
+  {
+    /*$parametros = $request->getParsedBody();
+    $orderNumber = $parametros['orderNumber'];
+    $tableNumber = $parametros['tableNumber'];
+    $picture = $_FILES["picture"];
+    $fecha = new DateTime(date("d-m-Y"));
+
+    if ($orderNumber == null || $tableNumber == null || $picture == null) {
+      $response->getBody()->write("Los Parametros de la consulta estan mal cargados o faltan parametros");
+      return $response
+        ->withHeader('Content-Type', 'application/json')
+        ->withStatus(403);
+    }
+
+    $string = explode(".", $file["name"]);
+    $extension = $string[1];
+    $destino = "images/FotosCripto/" . $param1 . "_" . $param2 . "_" . date("d-m-Y") . '.' . $extension;
+    if (!is_file($destino)) {
+      move_uploaded_file($file["tmp_name"], $destino);
+    }
+    $destino; */
+
+
   }
 }
