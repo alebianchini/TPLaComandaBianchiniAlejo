@@ -98,6 +98,7 @@ INSERT INTO employee_type VALUES (4, "BARTENDER", NULL);
 INSERT INTO employee_type VALUES (5, "CERVECERO", NULL);
 
 INSERT INTO employee VALUES (1, "abianchini", "Alejo Bianchini", "password", 1, NULL);
+INSERT INTO employee VALUES (1, "gmazzeo", "Giuliana Mazzeo", "password", 1, NULL);
 INSERT INTO employee VALUES (2, "tchapin", "Tom Chapin", "password", 2, NULL);
 INSERT INTO employee VALUES (3, "swright", "Suzan Wright", "password", 4, NULL);
 INSERT INTO employee VALUES (4, "jsnow", "John Snow", "password", 3, NULL);

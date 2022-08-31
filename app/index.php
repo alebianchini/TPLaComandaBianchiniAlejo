@@ -80,7 +80,7 @@ $app->group('/product', function (RouteCollectorProxy $group) {
     $group->put('[/{id}]', \ProductController::class . ':ModificarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
     $group->delete('[/{id}]', \ProductController::class . ':BorrarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
     $group->put('/restore/{id}', \ProductController::class . ':RestaurarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
-    $group->get('/test/supertest', \ProductController::class . ':ObtenerDeMasVendidoAMenos' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->get('/all/mostsold', \ProductController::class . ':ObtenerDeMasVendidoAMenos' )->add(\MdwJWT::class . ':ValidarTokenSocio');
 });
 
 $app->group('/status', function (RouteCollectorProxy $group) {
