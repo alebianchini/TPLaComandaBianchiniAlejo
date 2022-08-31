@@ -20,6 +20,7 @@ require __DIR__ . '/../vendor/autoload.php';
 require_once './controllers/EmployeeController.php';
 require_once './controllers/TableController.php';
 require_once './controllers/StatusController.php';
+require_once './controllers/EmployeeTypeController.php';
 require_once './controllers/LoginController.php';
 require_once './middlewares/MdwCore.php';
 require_once './middlewares/MdwJWT.php';
@@ -75,6 +76,15 @@ $app->group('/status', function (RouteCollectorProxy $group) {
     $group->put('[/{id}]', \StatusController::class . ':ModificarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
     $group->delete('[/{id}]', \StatusController::class . ':BorrarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
     $group->put('/restore/{id}', \StatusController::class . ':RestaurarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+});
+
+$app->group('/employeetype', function (RouteCollectorProxy $group) {
+    $group->get('/{id}', \EmployeeTypeController::class . ':TraerUno' )->add(\MdwJWT::class . ':ValidarToken');
+    $group->get('[/]', \EmployeeTypeController::class . ':TraerTodos' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->post('[/]', \EmployeeTypeController::class . ':CargarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->put('[/{id}]', \EmployeeTypeController::class . ':ModificarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->delete('[/{id}]', \EmployeeTypeController::class . ':BorrarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->put('/restore/{id}', \EmployeeTypeController::class . ':RestaurarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
 });
 
 $app->run();
