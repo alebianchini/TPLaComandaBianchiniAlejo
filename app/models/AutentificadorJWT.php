@@ -16,7 +16,7 @@ class AutentificadorJWT
             'exp' => $ahora + (60000),
             'aud' => self::Aud(),
             'data' => $datos,
-            'app' => "PARCIAL ARMAS"
+            'app' => "TPLACOMANDA"
         );
         return JWT::encode($payload, self::$claveSecreta);
     }
@@ -33,7 +33,8 @@ class AutentificadorJWT
                 self::$tipoEncriptacion
             );
         } catch (Exception) {
-            throw new Exception("Token invalido.");
+            return 1;
+            //throw new Exception("Token invalido.");
         }
         if ($decodificado->aud !== self::Aud()) {
             throw new Exception("No es el usuario valido");
