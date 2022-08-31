@@ -6,6 +6,9 @@ require_once './interfaces/IApiUsable.php';
 
 use App\Models\Product as Product;
 use App\Models\EmployeeType as EmployeeType;
+use App\Models\OrderItem;
+
+use Illuminate\Database\Capsule\Manager as DB;
 
 class ProductController implements IApiUsable
 {
@@ -124,6 +127,28 @@ class ProductController implements IApiUsable
     } else {
       $response->getBody()->write("No hay un empleado de baja con ese id");
     }
+
+    return $response
+      ->withHeader('Content-Type', 'application/json');
+  }
+
+  public function ObtenerDeMasVendidoAMenos($request, $response, $args)
+  {
+    // $ret = OrderItem::select(DB::raw("count(order_items.product), product.name
+    // FROM order_items as order_items join product as product on order_items.product = product.id
+    // GROUP BY order_items.product"))->get();
+
+    $ret = DB::table("order_items")
+    ->join("product", function($join){
+        $join->on("order_items.product", "=", "product.id");
+    })
+    ->select("count(order_items.product) as counts", "order_items.product")
+    ->groupBy("order_items.product")
+    ->get();
+
+    var_dump($ret);
+
+    $response->getBody()->write($ret->toJson());
 
     return $response
       ->withHeader('Content-Type', 'application/json');

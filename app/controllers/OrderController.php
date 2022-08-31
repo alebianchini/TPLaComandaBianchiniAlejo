@@ -27,14 +27,15 @@ class OrderController implements IApiUsable
   }
 
   public function TraerTodos($request, $response, $args)
-  {
-    $products = Order::all();
-    foreach ($products as $value) {
-      $employeeType = OrderItem::find($value['employee_type']);
-      $value->employee_type = $employeeType->name;
+  { 
+    // TODO: AGREGAR TODAS LAS ENTIDADES EN LUGAR DE IDs.
+    $orders = Order::all();
+    foreach ($orders as $value) {
+      $orderItems = OrderItem::select('product','status','eta','completed_time')->where('order_id', $value['id'])->get();
+      $value->items = $orderItems;
     }
 
-    $response->getBody()->write($products->toJson());
+    $response->getBody()->write($orders->toJson());
     return $response
       ->withHeader('Content-Type', 'application/json');
   }
