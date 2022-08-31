@@ -18,8 +18,7 @@ class LoginController
     $datos = array('uuid' => $dataRequest['uuid'], 'type' => $record2['name']);
     $token = AutentificadorJWT::CrearToken($datos);
 
-    $payload = "Usuario logueado, tome su token: ";
-    $payload .= json_encode(array('jwt' => $token));
+    $payload = json_encode(array('jwt' => $token));
 
     $response->getBody()->write($payload);
     return $response->withHeader('Content-Type', 'application/json');

@@ -200,4 +200,54 @@ class OrderController implements IApiUsable
     return $response
       ->withHeader('Content-Type', 'application/json');
   }
+
+  public function TraerTodosParaServir($request, $response, $args)
+  { 
+    // TODO: AGREGAR TODAS LAS ENTIDADES EN LUGAR DE IDs.
+    $orders = Order::all()->where('status', 3);
+    foreach ($orders as $value) {
+      $orderItems = OrderItem::select('product','status','eta','completed_time')->where('order_id', $value['id'])->get();
+      $value->items = $orderItems;
+    }
+
+    $response->getBody()->write($orders->toJson());
+    return $response
+      ->withHeader('Content-Type', 'application/json');
+  }
+
+  public function EntregarOrden($request, $response, $args)
+  {
+    $record = Order::find($args['id']);
+    $parametros = $request->getParsedBody();
+
+    if ($record != null) {
+      if(array_key_exists("name",$parametros) && $parametros['name'] != null){
+        if(Order::where('name', $parametros['name'])->exists()){
+          $response->getBody()->write("Ya existe un producto con ese nombre.");
+        } else {
+          $record->name = $parametros['name'];
+        }
+      }
+
+      if(array_key_exists("price",$parametros) && $parametros['price'] != null){
+        $record->price = $parametros['price'];
+      }
+
+      if(array_key_exists("eta",$parametros) && $parametros['eta'] != null){
+        $record->eta = $parametros['eta'];
+      }
+
+      if(array_key_exists("employee_type",$parametros) && $parametros['employee_type'] != null){
+        $record->employee_type = $parametros['employee_type'];
+      }
+
+      $record->save();
+
+      $payload = json_encode(array("mensaje" => "Producto modificado con exito"));
+    } else {
+      $payload = json_encode(array("mensaje" => "Producto no encontrado"));
+    }
+    $response->getBody()->write($payload);
+    return $response->withHeader('Content-Type', 'application/json');
+  }
 }

@@ -62,7 +62,7 @@ class MdwJWT
         if (MdwJWT::ValidarTokenType($request, $handler, 'MOZO')) {
             $response = $handler->handle($request);
         } else {
-            $response->getBody()->write("El usuario logueado no es socio.");
+            $response->getBody()->write("El usuario logueado no es mozo.");
         }
 
         return $response->withHeader('Content-Type', 'application/json');
@@ -98,7 +98,7 @@ class MdwJWT
         if (MdwJWT::ValidarTokenType($request, $handler, 'COCINERO')) {
             $response = $handler->handle($request);
         } else {
-            $response->getBody()->write("El usuario logueado no es socio.");
+            $response->getBody()->write("El usuario logueado no es cocinero.");
         }
         
         return $response->withHeader('Content-Type', 'application/json');
@@ -116,7 +116,7 @@ class MdwJWT
         if (MdwJWT::ValidarTokenType($request, $handler, 'CERVERCERO')) {
             $response = $handler->handle($request);
         } else {
-            $response->getBody()->write("El usuario logueado no es socio.");
+            $response->getBody()->write("El usuario logueado no es cervecero.");
         }
         
         return $response->withHeader('Content-Type', 'application/json');

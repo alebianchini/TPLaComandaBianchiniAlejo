@@ -104,11 +104,13 @@ $app->group('/employeetype', function (RouteCollectorProxy $group) {
 $app->group('/orders', function (RouteCollectorProxy $group) {
     $group->get('/{number}', \OrderController::class . ':TraerUno' )->add(\MdwJWT::class . ':ValidarToken');
     $group->get('[/]', \OrderController::class . ':TraerTodos' )->add(\MdwJWT::class . ':ValidarTokenSocio');
-    $group->post('[/]', \OrderController::class . ':CargarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    $group->post('[/]', \OrderController::class . ':CargarUno' )->add(\MdwJWT::class . ':ValidarTokenMozo');
     $group->put('[/{id}]', \OrderController::class . ':ModificarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
     $group->delete('[/{id}]', \OrderController::class . ':BorrarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
     $group->put('/restore/{id}', \OrderController::class . ':RestaurarUno' )->add(\MdwJWT::class . ':ValidarTokenSocio');
     $group->post('/picture', \OrderController::class . ':TomarFoto' )->add(\MdwJWT::class . ':ValidarTokenSocio');
+    //$group->get('/paraServir', \OrderController::class . ':TraerTodosParaServir' )->add(\MdwJWT::class . ':ValidarTokenMozo');
+    //$group->post('/entrega/{id}', \OrderController::class . ':EntregaOrden' )->add(\MdwJWT::class . ':ValidarTokenMozo');
 });
 
 $app->group('/orderitem', function (RouteCollectorProxy $group) {
